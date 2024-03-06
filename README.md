@@ -1,4 +1,4 @@
-# Multiple MGR5 variants contribute to a clinal pattern in leaf Mg in *Arabidopsis thaliana*
+# Multiple *MGR5* alleles contribute to a clinal pattern in leaf Mg in *Arabidopsis thaliana*
 
 **Authors:**  Emmanuel Tergemina, Shifa Ansari, Paulina Flis, David E. Salt and Angela M. Hancock
 
