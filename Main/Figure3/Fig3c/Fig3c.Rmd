@@ -2,7 +2,7 @@
 title: "Fig3c"
 author: "Emmanuel Tergemina"
 date: "2024-03-11"
-output: rmarkdown::github_document
+output: github_document
 ---
 
 
