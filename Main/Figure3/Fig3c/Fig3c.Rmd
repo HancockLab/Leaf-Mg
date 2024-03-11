@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Load libraries
-```{r setup, include=FALSE}
+```{r library, include=FALSE}
 library(ggmap)
 library(ggrepel)
 library(maps)
@@ -25,6 +25,11 @@ library(dplyr)
 Map = c(left = -20, bottom = 32, right = 45, top = 70) #Europe
 mapacc <- get_stadiamap(Map, zoom = 5, maptype = c("stamen_toner_background")) #download_map
 ```
+## Import data
+```{r map, include=FALSE}
+df <- read.table("Fig3c.txt", header = T, sep = '\t')
+```
+
 ## Plotting
 ```{r plotting}
 reorder <- df[order(df$Chr5_282011, decreasing=TRUE), ]
