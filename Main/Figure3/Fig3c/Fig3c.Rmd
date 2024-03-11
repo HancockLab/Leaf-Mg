@@ -5,26 +5,33 @@ date: "2024-03-11"
 output: html_document
 ---
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+## Load libraries
+```{r setup, include=FALSE}
+library(ggmap)
+library(ggrepel)
+library(maps)
+library(mapproj)
+library(plyr)
+library(dplyr)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Set map
+```{r map, include=FALSE}
+Map = c(left = -20, bottom = 32, right = 45, top = 70) #Europe
+mapacc <- get_stadiamap(Map, zoom = 5, maptype = c("stamen_toner_background")) #download_map
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Plotting
+```{r plotting}
+reorder <- df[order(df$Chr5_282011, decreasing=TRUE), ]
+reorder <- reorder%>%filter(Chr5_282011!='.')
+ggmap(mapacc) +
+  labs(x = 'Longitude', y = 'Latitude',color = "Chr5:282011",shape=3) +
+  geom_point(data=reorder, aes(x = Longitude,y = Latitude, color = Chr5_282011 ),
+             size=1,alpha=0.6) +
+  scale_color_manual(values = c("1" = "#56B4E9","0" = "red"),labels = c("minor", "major"),)
+```
