@@ -39,4 +39,4 @@ ggmap(mapacc) +
   scale_color_manual(values = c("0" = "#56B4E9","1" = "red"),labels = c("major", "minor"),) 
 ```
 
-![](Fig4c_files/figure-gfm/plotting-1.png)<!-- -->
+![](Fig4c_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->

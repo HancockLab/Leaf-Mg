@@ -6,12 +6,12 @@ output: github_document
 ---
 
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Load libraries
-```{r library, message=F, warning=F}
+```{r, message=F, warning=F}
 library(ggmap)
 library(ggrepel)
 library(maps)
@@ -21,17 +21,17 @@ library(dplyr)
 ```
 
 ## Set map
-```{r map, message=F, warning=F}
+```{r, message=F, warning=F}
 Map = c(left = -20, bottom = 32, right = 45, top = 70) #Europe
 mapacc <- get_stadiamap(Map, zoom = 5, maptype = c("stamen_toner_background")) #download_map
 ```
 ## Import data
-```{r import}
+```{r}
 df <- read.table("Fig4c.txt", header = T, sep = '\t')
 ```
 
 ## Plotting
-```{r plotting}
+```{r}
 reorder <- df[order(df$Chr5_21392702, decreasing=FALSE), ]
 reorder <- reorder%>%filter(Chr5_21392702!='.')
 ggmap(mapacc) +
