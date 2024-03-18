@@ -38,5 +38,5 @@ ggmap(mapacc) +
   labs(x = 'Longitude', y = 'Latitude',color = "Chr5:282011",shape=3) +
   geom_point(data=reorder, aes(x = Longitude,y = Latitude, color = Chr5_282011 ),
              size=1,alpha=0.6) +
-  scale_color_manual(values = c("1" = "#56B4E9","0" = "red"),labels = c("minor", "major"),)
+  scale_color_manual(values = c("red","#56B4E9"),labels = c("derived", "ancestral"),)
 ```
