@@ -1,4 +1,4 @@
-# Multiple *MGR5* alleles contribute to a clinal pattern in leaf Mg in *Arabidopsis thaliana*
+# Multiple *MGR5* alleles contribute to a clinal pattern in leaf magnesium in *Arabidopsis thaliana*
 
 **Authors:**  Emmanuel Tergemina, Shifa Ansari, Paulina Flis, David E. Salt and Angela M. Hancock
 
@@ -34,3 +34,6 @@
 
 #### [Figure S9](./Supplementary/FigS9)
 
+## General
+
+#### [Scripts](./General/Scripts)
