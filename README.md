@@ -12,8 +12,6 @@
 
 #### [Figure 4](./Main/Figure4)
 
-#### [Figure 5](./Main/Figure5)
-
 ## Supplementary
 
 #### [Figure S1](./Supplementary/FigS1)
