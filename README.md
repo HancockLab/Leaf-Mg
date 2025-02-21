@@ -1,4 +1,4 @@
-# Multiple independent *MGR5* alleles contribute to a clinal pattern in leaf magnesium
+# Multiple independent *MGR5* alleles contribute to a clinal pattern in leaf magnesium across the distribution of *A. thaliana*
 
 **Authors:**  Emmanuel Tergemina, Shifa Ansari, David E. Salt and Angela M. Hancock
 
@@ -31,6 +31,8 @@
 #### [Figure S8](./Supplementary/FigS8)
 
 #### [Figure S9](./Supplementary/FigS9)
+
+#### [Figure S10](./Supplementary/FigS10)
 
 ## General
 
