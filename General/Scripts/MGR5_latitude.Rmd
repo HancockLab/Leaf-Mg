@@ -1,0 +1,104 @@
+---
+title: "MGR5_latitude"
+author: "Emmanuel Tergemina"
+date: "2025-02-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Import and filter data
+
+## Load libraries
+```{r library}
+library(dplyr)
+library(pscl)
+library(lme4)
+```
+
+## Import data
+```{r load data}
+df=read.table('Mg_blues_Top2SNPs_Coord.txt',fill=TRUE,header = TRUE)
+```
+
+## Filter data set
+```{r filter data}
+df_no_NA=na.omit(df)
+
+df_no_NA=df_no_NA%>%filter(chr5_21392702!='.')
+df_no_NA$chr5_21392702=factor(df_no_NA$chr5_21392702)
+
+df_no_NA=df_no_NA%>%filter(chr5_21405867!='.')
+df_no_NA$chr5_21405867=factor(df_no_NA$chr5_21405867)
+
+df_no_NA=df_no_NA%>%filter(chr5_282011!='.')
+df_no_NA$chr5_282011=factor(df_no_NA$chr5_282011)
+```
+
+# MGR5 contribution to the latitudinal cline in leaf Mg
+
+## Build models
+```{r models}
+# Null model
+model=lm(Latitude ~ Mg_blues, data=df_no_NA)
+summary(model)
+
+# Model with top SNP at RAPTOR1A region
+model_chr5_282011=lm(Latitude ~ Mg_blues + chr5_282011, data=df_no_NA)
+summary(model_chr5_282011)
+
+# Model with top SNP1 at MGR5 region
+model_chr5_21405867=lm(Latitude ~ Mg_blues + chr5_21405867, data=df_no_NA)
+summary(model_chr5_21405867)
+
+# Model with top SNP2 at MGR5 region
+model_chr5_21392702=lm(Latitude ~ Mg_blues + chr5_21392702, data=df_no_NA)
+summary(model_chr5_21392702)
+
+# Combined models
+model_chr5_21392702_21405867=lm(Latitude ~ Mg_blues + chr5_21392702 + chr5_21405867, data=df_no_NA)
+summary(model_chr5_21392702_21405867)
+
+model_chr5_282011_21405867=lm(Latitude ~ Mg_blues + chr5_282011 + chr5_21405867, data=df_no_NA)
+summary(model_chr5_282011_21405867)
+
+model_chr5_21392702_282011=lm(Latitude ~ Mg_blues + chr5_21392702 + chr5_282011, data=df_no_NA)
+summary(model_chr5_21392702_282011)
+
+model_chr5_282011_21392702_21405867=lm(Latitude ~ Mg_blues + chr5_282011 + chr5_21392702 + chr5_21405867, data=df_no_NA)
+summary(model_chr5_282011_21392702_21405867)
+```
+
+## Compare models
+```{r compare models}
+anova(model, model_chr5_21405867, test = "LRT")
+anova(model, model_chr5_21392702, test = "LRT")
+anova(model, model_chr5_282011, test = "LRT")
+anova(model_chr5_282011,model_chr5_282011_21405867, test = "LRT")
+anova(model_chr5_282011,model_chr5_21392702_282011, test = "LRT")
+anova(model_chr5_21405867,model_chr5_282011_21405867, test = "LRT")
+anova(model_chr5_21392702,model_chr5_21392702_282011, test = "LRT")
+anova(model_chr5_21405867, model_chr5_21392702_21405867, test = "LRT")
+anova(model_chr5_21392702, model_chr5_21392702_21405867, test = "LRT")
+anova(model_chr5_21392702_21405867, model_chr5_282011_21392702_21405867, test = "LRT")
+```
+
+# Relationship between latitude and the variants identified through GWAS
+```{r latitude vs variants}
+df_no_NA$chr5_282011=as.numeric(as.character(df_no_NA$chr5_282011))
+model=glm(chr5_282011 ~ Latitude, data = df_no_NA, family = binomial())
+summary(model)
+
+df_no_NA$chr5_21392702=as.numeric(as.character(df_no_NA$chr5_21392702))
+model=glm(chr5_21392702 ~ Latitude, data = df_no_NA, family = binomial())
+summary(model)
+
+df_no_NA$chr5_21405867=as.numeric(as.character(df_no_NA$chr5_21405867))
+model=glm(chr5_21405867 ~ Latitude, data = df_no_NA, family = binomial())
+summary(model)
+```
+
+
+
